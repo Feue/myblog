@@ -1,14 +1,15 @@
 package com.feue.myblog.utils;
 
 import com.auth0.jwt.JWT;
+import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.exceptions.JWTVerificationException;
+import com.auth0.jwt.interfaces.Claim;
+import com.auth0.jwt.interfaces.DecodedJWT;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author Feue
@@ -39,8 +40,31 @@ public class JwtToken {
                 .sign(algorithm);
     }
 
+    public static boolean verifyToken(String token) {
+        try {
+            Algorithm algorithm = Algorithm.HMAC256(JwtToken.jwtKey);
+            JWTVerifier verifier = JWT.require(algorithm).build();
+            verifier.verify(token);
+        } catch (JWTVerificationException e) {
+            return false;
+        }
+        return true;
+    }
+
+    public static Optional<Map<String, Claim>> getClaims(String token) {
+        DecodedJWT decodedJWT;
+        Algorithm algorithm = Algorithm.HMAC256(JwtToken.jwtKey);
+        JWTVerifier verifier = JWT.require(algorithm).build();
+        try {
+            decodedJWT = verifier.verify(token);
+        } catch (JWTVerificationException e) {
+            return Optional.empty();
+        }
+        return Optional.of(decodedJWT.getClaims());
+    }
+
     private static Map<String, Date> calculateExpiredIssues() {
-        Map<String, Date> map = new HashMap<>();
+        Map<String, Date> map = new HashMap<>(16);
         Calendar calendar = Calendar.getInstance();
         Date now = calendar.getTime();
         calendar.add(Calendar.SECOND, JwtToken.expiredTimeIn);
