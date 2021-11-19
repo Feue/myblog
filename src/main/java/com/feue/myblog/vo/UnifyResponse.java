@@ -1,4 +1,4 @@
-package com.feue.myblog.core;
+package com.feue.myblog.vo;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -9,10 +9,17 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public class UnifyResponse {
+public class UnifyResponse<T> {
     private int code;
+    private T result;
     private String message;
     private String request;
+
+    public UnifyResponse(T result, String message) {
+        this.code = 0;
+        this.result = result;
+        this.message = message;
+    }
 
     public UnifyResponse(int code, String message, String request) {
         this.code = code;

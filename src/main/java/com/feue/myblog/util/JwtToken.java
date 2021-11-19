@@ -1,4 +1,4 @@
-package com.feue.myblog.utils;
+package com.feue.myblog.util;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
@@ -21,12 +21,12 @@ public class JwtToken {
     private static Integer expiredTimeIn;
 
     @Value(value = "${myblog.security.jwt-key}")
-    public static void setJwtKey(String jwtKey) {
+    public void setJwtKey(String jwtKey) {
         JwtToken.jwtKey = jwtKey;
     }
 
     @Value(value = "${myblog.security.token-expired-in}")
-    public static void setExpiredTimeIn(Integer expiredTimeIn) {
+    public void setExpiredTimeIn(Integer expiredTimeIn) {
         JwtToken.expiredTimeIn = expiredTimeIn;
     }
 

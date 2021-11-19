@@ -17,9 +17,9 @@ import javax.persistence.Id;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Entity
+@Entity(name = "user")
 @Where(clause = "delete_time is null")
-public class User extends BaseEntity {
+public class UserDO extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

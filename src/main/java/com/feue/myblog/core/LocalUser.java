@@ -1,6 +1,6 @@
 package com.feue.myblog.core;
 
-import com.feue.myblog.model.User;
+import com.feue.myblog.model.UserDO;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,14 +12,14 @@ import java.util.Map;
 public class LocalUser {
     private static ThreadLocal<Map<String, Object>> threadLocal = new ThreadLocal<>();
 
-    public static void setUser(User user) {
+    public static void setUser(UserDO userDO) {
         Map<String, Object> map = new HashMap<>();
-        map.put("user", user);
+        map.put("user", userDO);
         LocalUser.threadLocal.set(map);
     }
 
-    public static User getUser() {
-        return (User) LocalUser.threadLocal.get().get("user");
+    public static UserDO getUser() {
+        return (UserDO) LocalUser.threadLocal.get().get("user");
     }
 
     public static void clear() {

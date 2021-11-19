@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.feue</groupId>
-    <artifactId>MyMicroBlog</artifactId>
+    <artifactId>MyBlog</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>MyMicroBlog</name>
-    <description>Learn to build a microblog</description>
+    <description>Learn to build a blog</description>
     <properties>
         <java.version>11</java.version>
     </properties>

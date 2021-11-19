@@ -2,6 +2,7 @@ package com.feue.myblog.core;
 
 import com.feue.myblog.core.configuration.ExceptionCodeConfiguration;
 import com.feue.myblog.exception.HttpException;
+import com.feue.myblog.vo.UnifyResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -63,7 +64,6 @@ public class GlobalExceptionAdvice {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ResponseBody
     public UnifyResponse handleConstraintException(HttpServletRequest req, ConstraintViolationException e) {
-        System.out.println("ConstraintViolationException");
         String url = req.getRequestURI();
         String method = req.getMethod();
         return new UnifyResponse(10001, e.getMessage(), method + " " + url);
