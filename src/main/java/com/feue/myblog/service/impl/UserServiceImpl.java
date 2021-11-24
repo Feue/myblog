@@ -23,9 +23,17 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Long register(UserDO userDO) {
-        UserDO exist = this.userRepository.findOneByNickname(userDO.getNickname());
-        if (exist != null) {
+        UserDO oneByNickname = this.userRepository.findOneByNickname(userDO.getNickname());
+        UserDO oneByEmail = this.userRepository.findOneByEmail(userDO.getEmail());
+        UserDO oneByMobile = this.userRepository.findOneByMobile(userDO.getMobile());
+        if (oneByNickname != null) {
             throw new ParameterException(20001);
+        }
+        if (oneByEmail != null) {
+            throw new ParameterException(20004);
+        }
+        if (oneByMobile != null) {
+            throw new ParameterException(20005);
         }
         return this.userRepository.save(userDO).getId();
     }
