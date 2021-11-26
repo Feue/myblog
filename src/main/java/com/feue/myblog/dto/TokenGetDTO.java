@@ -4,6 +4,7 @@ import com.feue.myblog.core.enumeration.LoginType;
 import com.feue.myblog.core.annotation.TokenPassword;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.validation.constraints.NotBlank;
 
@@ -13,6 +14,7 @@ import javax.validation.constraints.NotBlank;
  */
 @Getter
 @Setter
+@ToString
 public class TokenGetDTO {
     @NotBlank(message = "Account cannot be null")
     private String account;

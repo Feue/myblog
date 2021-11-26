@@ -5,6 +5,7 @@ import com.feue.myblog.service.NewsBoxService;
 import com.feue.myblog.service.NewsInfoService;
 import com.feue.myblog.vo.UnifyResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,8 +23,8 @@ public class NewsController {
 //    @Autowired
 //    private NewsBoxService newsBoxService;
 
-    @RequestMapping(value = "receiver/id/{id}")
-    public UnifyResponse<List<NewsInfoDO>> getAllByReceiverId() {
+    @RequestMapping(value = "receiver/id/{receiverId}")
+    public UnifyResponse<List<NewsInfoDO>> getAllByReceiverId(@PathVariable Long receiverId) {
         return null;
     }
 }

@@ -15,6 +15,10 @@ public class UnifyResponse<T> {
     private String message;
     private String request;
 
+    public UnifyResponse(String message) {
+        this.message = message;
+    }
+
     public UnifyResponse(T result, String message) {
         this.code = 0;
         this.result = result;

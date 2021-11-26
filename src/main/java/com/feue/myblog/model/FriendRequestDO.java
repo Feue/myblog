@@ -10,22 +10,22 @@ import javax.persistence.Id;
 
 /**
  * @author Feue
- * @create 2021-11-24 16:58
+ * @create 2021-11-25 12:37
  */
 @Getter
 @Setter
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Entity(name = "news_box")
+@Entity(name = "friend_request")
 @Where(clause = "delete_time is null")
-public class NewsBoxDO extends BaseEntity {
+public class FriendRequestDO extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long newsId;
-    private Long senderId;
-    private Long receiverId;
-    private String like;
+    private Long userId;
+    private Long friendId;
+    private String state;
     private String comment;
 }

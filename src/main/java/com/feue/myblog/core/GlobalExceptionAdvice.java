@@ -33,6 +33,7 @@ public class GlobalExceptionAdvice {
     @ResponseStatus(code = HttpStatus.INTERNAL_SERVER_ERROR)
     @ResponseBody
     public UnifyResponse handleException(HttpServletRequest request, Exception e) {
+        e.printStackTrace();
         String url = request.getRequestURI();
         String method = request.getMethod();
         return new UnifyResponse(9999, "服务器异常", method + " " + url);
